@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
-
-namespace CodeBase
+namespace CodeBase.Infrastructure
 {
     public class Game
     {

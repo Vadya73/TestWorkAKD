@@ -1,3 +1,5 @@
+using CodeBase.Infrastructure;
+
 namespace CodeBase.GameStateMachine
 {
     public class BootstrapState : IState

@@ -1,3 +1,4 @@
+using CodeBase.Infrastructure;
 using Unity.VisualScripting;
 
 namespace CodeBase.GameStateMachine

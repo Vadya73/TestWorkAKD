@@ -8,24 +8,22 @@ namespace CodeBase.Player.PickupSystem
     {
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private Button _pickupButton;
-        [SerializeField] private TMP_Text _buttonText; // Ссылка на текст в кнопке
+        [SerializeField] private TMP_Text _buttonText;
         [SerializeField] private Button _carHoldButton;
-        [SerializeField] private Transform _holdPosition; // Позиция удержания предмета
-        [SerializeField] private Collider _truckZoneCollider;         // Коллайдер зоны для фургона (место для хранения)
-        [SerializeField] private float _smoothMoveSpeed = 5f; // Скорость перемещения объекта
-        [SerializeField] private float _rotationSpeed = 10f; // Скорость вращения
-        [SerializeField] private Transform[] _storagePositions;       // Места хранения внутри кузова
+        [SerializeField] private Transform _holdPosition;
+        [SerializeField] private Collider _truckZoneCollider;
+        [SerializeField] private float _smoothMoveSpeed = 5f;
+        [SerializeField] private float _rotationSpeed = 10f;
+        [SerializeField] private Transform[] _storagePositions;
 
         private IInteractable _currentInteractable = null;
-        private Rigidbody _heldObjectRigidbody; // Rigidbody удерживаемого объекта
+        private Rigidbody _heldObjectRigidbody;
 
         private void Start()
         {
             if (_mainCamera == null)
                 _mainCamera = Camera.main;
-
-            if (_pickupButton == null)
-                Debug.LogError("Pickup button is not assigned!");
+            
             
             if (_buttonText == null)
                 _buttonText = _pickupButton.GetComponentInChildren<TMP_Text>();
@@ -62,7 +60,6 @@ namespace CodeBase.Player.PickupSystem
 #if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Pickup");
                 var touch = Input.mousePosition;
             
                 Ray touchRay = _mainCamera.ScreenPointToRay(touch);
@@ -70,14 +67,11 @@ namespace CodeBase.Player.PickupSystem
                 RaycastHit Touchhit;
                 if (Physics.Raycast(touchRay, out Touchhit, 50f))
                 {
-                    Debug.Log("Pickup2" + Touchhit.collider.name);
                     if (!Touchhit.collider.TryGetComponent(out IInteractable interactable))
                         return;
                     
-                    Debug.Log("Pickup3");
                     if (_currentInteractable == null)
                     {
-                        Debug.Log("Pickup4");
                         _currentInteractable = interactable;
                         PickupObject();
                     }
