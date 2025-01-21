@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,6 +52,12 @@ namespace CodeBase.Player.PickupSystem
         {
             _pickupButton.onClick.AddListener(HandlePickupButtonClick);
             _carHoldButton.onClick.AddListener(PlaceInTruck);
+        }
+
+        private void OnDisable()
+        {
+            _pickupButton.onClick.RemoveListener(HandlePickupButtonClick);
+            _carHoldButton.onClick.RemoveListener(PlaceInTruck);
         }
 
         private void HandleInput()
