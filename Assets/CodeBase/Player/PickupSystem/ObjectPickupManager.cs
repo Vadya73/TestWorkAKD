@@ -20,8 +20,8 @@ namespace CodeBase.Player.PickupSystem
         [SerializeField] private float _smoothMoveSpeed = 5f;
         [SerializeField] private float _rotationSpeed = 10f;
 
-        private IInteractable _currentInteractable;
-        private Rigidbody _heldObjectRigidbody;
+        private IInteractable _currentInteractable = null;
+        [SerializeField] private Rigidbody _heldObjectRigidbody = null;
 
         private void Awake()
         {
@@ -35,10 +35,9 @@ namespace CodeBase.Player.PickupSystem
             HandleRaycast();
         }
 
-        private void FixedUpdate()
-        {
-            MoveHeldObject();
-        }
+        private void FixedUpdate() => MoveHeldObject();
+
+        private void OnDisable() => UnbindButtonActions();
 
         private void InitializeReferences()
         {
@@ -54,7 +53,7 @@ namespace CodeBase.Player.PickupSystem
             _carHoldButton.onClick.AddListener(PlaceInTruck);
         }
 
-        private void OnDisable()
+        private void UnbindButtonActions()
         {
             _pickupButton.onClick.RemoveListener(HandlePickupButtonClick);
             _carHoldButton.onClick.RemoveListener(PlaceInTruck);
