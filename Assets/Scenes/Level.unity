@@ -2469,10 +2469,10 @@ MonoBehaviour:
   _mainCamera: {fileID: 2047907824}
   _pickupButton: {fileID: 16657211}
   _buttonText: {fileID: 1025265661}
-  _storageButton: {fileID: 1605874419}
+  _carHoldButton: {fileID: 1605874419}
   _holdPosition: {fileID: 496486532}
-  _storageZoneCollider: {fileID: 1091692800}
-  _objectMoveSpeed: 5
+  _truckZoneCollider: {fileID: 1091692800}
+  _smoothMoveSpeed: 5
   _rotationSpeed: 10
   _storagePositions:
   - {fileID: 677087955}
